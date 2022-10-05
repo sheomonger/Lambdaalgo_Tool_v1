@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-# Form implementation generated from reading ui file 
-# Created by: PyQt5 UI code generator 5.15.4
+#  
+# Development Tool for Editing Mathematical Contents
+#
+# TODO:
+# 1. Download Text Data from AWS DB, e.g. MySQL
+# 2. Edit Such Math Text
+# 3. Upload the Text to the DB
 #
 
 
