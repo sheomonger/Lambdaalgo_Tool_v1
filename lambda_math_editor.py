@@ -58,40 +58,34 @@ class Ui_MainWindow_devtool(object):
         self.pushButton_store.setGeometry(QtCore.QRect(170, 830, 75, 23))
         self.pushButton_store.setObjectName("pushButton_store")
         self.pushButton_store.clicked.connect(self.onClickStoreDataToDB)  # onClickStoreDataToDB method when clicked
-        # Central Widget [QWidget]
-        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(280, 20, 181, 21))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        # Layout [QHBoxLayout]
-        self.horizontalLayout_db_choose = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout_db_choose.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_db_choose.setObjectName("horizontalLayout_db_choose")
+        # Container [QGroupBox]
+        self.groupBox_db= QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox_db.setGeometry(QtCore.QRect(280, 10, 171, 31))
+        self.groupBox_db.setTitle("")
+        self.groupBox_db.setObjectName("groupBox_db")
         # Button [QRadioButton]
-        self.radioButton_db_01 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.radioButton_db_01 = QtWidgets.QRadioButton(self.groupBox_db)
+        self.radioButton_db_01.setGeometry(QtCore.QRect(0, 10, 90, 16))
         self.radioButton_db_01.setObjectName("radioButton_db_01")
         self.radioButton_db_01.setChecked(True)  # defaulted
-        self.horizontalLayout_db_choose.addWidget(self.radioButton_db_01)
         # Button [QRadioButton]
-        self.radioButton_db_02 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.radioButton_db_02 = QtWidgets.QRadioButton(self.groupBox_db)
+        self.radioButton_db_02.setGeometry(QtCore.QRect(99, 10, 71, 20))
         self.radioButton_db_02.setObjectName("radioButton_db_02")
-        self.horizontalLayout_db_choose.addWidget(self.radioButton_db_02)
-        # Central Widget [QWidget]
-        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(320, 60, 111, 21))
-        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
-        # Layout [QHBoxLayout]
-        self.horizontalLayout_pro_sol = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.horizontalLayout_pro_sol.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_pro_sol.setObjectName("horizontalLayout_pro_sol")
+        # Container [QGroupBox]
+        self.groupBox_pro_sol = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox_pro_sol.setGeometry(QtCore.QRect(320, 60, 111, 21))
+        self.groupBox_pro_sol.setTitle("")
+        self.groupBox_pro_sol.setObjectName("groupBox_pro_sol")
         # Button [QRadioButton]
-        self.radioButton_sol = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.radioButton_sol = QtWidgets.QRadioButton(self.groupBox_pro_sol)
+        self.radioButton_sol.setGeometry(QtCore.QRect(0, 0, 51, 16))
         self.radioButton_sol.setObjectName("radioButton_sol")
-        self.radioButton_sol.setChecked(True)
-        self.horizontalLayout_pro_sol.addWidget(self.radioButton_sol)
+        self.radioButton_sol.setChecked(True) # defaulted
         # Button [QRadioButton]
-        self.radioButton_pro = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.radioButton_pro = QtWidgets.QRadioButton(self.groupBox_pro_sol)
+        self.radioButton_pro.setGeometry(QtCore.QRect(60, 0, 90, 16))
         self.radioButton_pro.setObjectName("radioButton_pro")
-        self.horizontalLayout_pro_sol.addWidget(self.radioButton_pro)
         # Input Widget [QLineEdit]
         self.lineEdit_db_pkey = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_db_pkey.setGeometry(QtCore.QRect(240, 60, 61, 21))
@@ -146,7 +140,6 @@ class Ui_MainWindow_devtool(object):
             msg.setWindowTitle("Database Connection Message")
             msg.setText("Algo DB Does Not Exist. Choose the Other One.")
             msg.setIcon(QMessageBox.Information)   # Critical, Warning, Information, Question
-            # msg.setStandardButtons(QMessageBox.Retry|QMessageBox.Ignore) # Ok, Open, Save, Cancel, Close, Yes, No, Abort, Retry, Ignore
             msg.setDefaultButton(QMessageBox.Retry)
             # msg.setInformativeText("Choose Lambda-DB")
             msg.setDetailedText("Choose Lambda-DB")
@@ -160,8 +153,8 @@ class Ui_MainWindow_devtool(object):
         msg = QMessageBox()
         msg.setWindowTitle("Database Upload Message")
         msg.setText("Are you Sure To Store Your Modified Text?")
-        msg.setIcon(QMessageBox.Warning)
-        msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        msg.setIcon(QMessageBox.Warning)  # Critical, Warning, Information, Question
+        msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)   # Ok, Open, Save, Cancel, Close, Yes, No, Abort, Retry, Ignore
         msg.setDetailedText("Once saved, the text will not be restored.")
         msg.buttonClicked.connect(self.popupStoreButton)
         x = msg.exec_()
