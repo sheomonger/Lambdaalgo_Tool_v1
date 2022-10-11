@@ -15,6 +15,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import pymysql
 from PyQt5.QtWidgets import QMessageBox
 
+cursor = None
+
 
 class Ui_MainWindow_devtool(object):
     def setupUi(self, MainWindow_devtool):
@@ -37,6 +39,8 @@ class Ui_MainWindow_devtool(object):
         # self.pushButton_connect.setGeometry(QtCore.QRect(470, 20, 75, 23))
         self.pushButton_connect.setGeometry(QtCore.QRect(470, 15, 75, 23))
         self.pushButton_connect.setObjectName("pushButton_connect")
+        # global cursor
+        # cursor = self.pushButton_connect.clicked.connect(self.onClickConnectDB)  # onClickConnetDB method when clicked
         self.pushButton_connect.clicked.connect(self.onClickConnectDB)  # onClickConnetDB method when clicked
         # Display Widget [QLabel]
         self.label_db_select = QtWidgets.QLabel(self.centralwidget)
@@ -143,6 +147,11 @@ class Ui_MainWindow_devtool(object):
                 msg.setIcon(QMessageBox.Information)
                 msg.setStandardButtons(QMessageBox.Ok)
                 x = msg.exec_()
+                global cursor
+                cursor = db.cursor()
+                cursor.execute("use lambda_01")
+                cursor.connection.commit()
+                # return db.cursor()
                 # print('lambda_01 connected')
             except Exception as e:
                 print(e)
@@ -161,7 +170,7 @@ class Ui_MainWindow_devtool(object):
             # print('algo db was checked')    
 
     def onClickGetDataFromDB(self):
-        pkey = self.lineEdit_db_pkey.text()
+        pkey = self.lineEdit_db_pkey.text()  # TODO: if cursor DNE 
         if pkey == '':
             msg = QMessageBox()
             msg.setWindowTitle("Value Error")
@@ -182,13 +191,22 @@ class Ui_MainWindow_devtool(object):
                 x = msg.exec_()
                 return
                 # print('Input non-negative integer')
-
+        sql = 'show tables'
         if self.radioButton_sol.isChecked():
-            print("해설")
+            sql = 'select solution from temptable where pid = ' + pkey
+            # print("해설")
         elif self.radioButton_pro.isChecked():
-            print("문제")
+            sql = 'select problem from temptable where pid = ' + pkey
+            # print("문제")
         else:
             print("No Way")    
+        print(sql)
+        global cursor
+        print(type(cursor))
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
+
         # print('data come from database in AWS')
 
     def onClickStoreDataToDB(self):
