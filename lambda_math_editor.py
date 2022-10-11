@@ -34,7 +34,7 @@ class Ui_MainWindow_devtool(object):
         self.pushButton_connect = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_connect.setGeometry(QtCore.QRect(470, 20, 75, 23))
         self.pushButton_connect.setObjectName("pushButton_connect")
-        self.pushButton_connect.clicked.connect(self.onClickConnectDB)
+        self.pushButton_connect.clicked.connect(self.onClickConnectDB)  # onClickConnetDB method when clicked
         # Display Widget [QLabel]
         self.label_db_select = QtWidgets.QLabel(self.centralwidget)
         self.label_db_select.setGeometry(QtCore.QRect(30, 60, 101, 21))
@@ -64,13 +64,13 @@ class Ui_MainWindow_devtool(object):
         self.horizontalLayout_db_choose.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_db_choose.setObjectName("horizontalLayout_db_choose")
         # Button [QRadioButton]
-        self.radioButton_database = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_database.setObjectName("radioButton_database")
-        self.horizontalLayout_db_choose.addWidget(self.radioButton_database)
+        self.radioButton_db_01 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.radioButton_db_01.setObjectName("radioButton_db_01")
+        self.horizontalLayout_db_choose.addWidget(self.radioButton_db_01)
         # Button [QRadioButton]
-        self.radioButton_pro_sol = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.radioButton_pro_sol.setObjectName("radioButton_pro_sol")
-        self.horizontalLayout_db_choose.addWidget(self.radioButton_pro_sol)
+        self.radioButton_db_02 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.radioButton_db_02.setObjectName("radioButton_db_02")
+        self.horizontalLayout_db_choose.addWidget(self.radioButton_db_02)
         # Central Widget [QWidget]
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(320, 60, 111, 21))
@@ -123,8 +123,8 @@ class Ui_MainWindow_devtool(object):
         self.label_db_text.setText(_translate("MainWindow_devtool", "편집하기"))
         self.label_db_update.setText(_translate("MainWindow_devtool", "데이터베이스 업데이트"))
         self.pushButton_store.setText(_translate("MainWindow_devtool", "저장하기"))
-        self.radioButton_database.setText(_translate("MainWindow_devtool", "Lambda-DB"))
-        self.radioButton_pro_sol.setText(_translate("MainWindow_devtool", "Algo-DB"))
+        self.radioButton_db_01.setText(_translate("MainWindow_devtool", "Lambda-DB"))
+        self.radioButton_db_02.setText(_translate("MainWindow_devtool", "Algo-DB"))
         self.radioButton_sol.setText(_translate("MainWindow_devtool", "해설"))
         self.radioButton_pro.setText(_translate("MainWindow_devtool", "문제"))
         self.label_db_pkey.setText(_translate("MainWindow_devtool", "문제 아이디"))
