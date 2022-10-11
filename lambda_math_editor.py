@@ -34,6 +34,7 @@ class Ui_MainWindow_devtool(object):
         self.pushButton_connect = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_connect.setGeometry(QtCore.QRect(470, 20, 75, 23))
         self.pushButton_connect.setObjectName("pushButton_connect")
+        self.pushButton_connect.clicked.connect(self.onClickConnectDB)
         # Display Widget [QLabel]
         self.label_db_select = QtWidgets.QLabel(self.centralwidget)
         self.label_db_select.setGeometry(QtCore.QRect(30, 60, 101, 21))
@@ -128,6 +129,11 @@ class Ui_MainWindow_devtool(object):
         self.radioButton_pro.setText(_translate("MainWindow_devtool", "문제"))
         self.label_db_pkey.setText(_translate("MainWindow_devtool", "문제 아이디"))
         self.pushButton_select.setText(_translate("MainWindow_devtool", "불러오기"))
+
+
+    def onClickConnectDB(self):
+        print('clicked')
+
 
 
 if __name__ == "__main__":
