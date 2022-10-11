@@ -66,6 +66,7 @@ class Ui_MainWindow_devtool(object):
         # Button [QRadioButton]
         self.radioButton_db_01 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
         self.radioButton_db_01.setObjectName("radioButton_db_01")
+        self.radioButton_db_01.setChecked(True)  # defaulted
         self.horizontalLayout_db_choose.addWidget(self.radioButton_db_01)
         # Button [QRadioButton]
         self.radioButton_db_02 = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
@@ -82,6 +83,7 @@ class Ui_MainWindow_devtool(object):
         # Button [QRadioButton]
         self.radioButton_sol = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
         self.radioButton_sol.setObjectName("radioButton_sol")
+        self.radioButton_sol.setChecked(True)
         self.horizontalLayout_pro_sol.addWidget(self.radioButton_sol)
         # Button [QRadioButton]
         self.radioButton_pro = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
