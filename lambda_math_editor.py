@@ -57,6 +57,7 @@ class Ui_MainWindow_devtool(object):
         self.pushButton_store = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_store.setGeometry(QtCore.QRect(170, 830, 75, 23))
         self.pushButton_store.setObjectName("pushButton_store")
+        self.pushButton_store.clicked.connect(self.onClickStoreDataToDB)  # onClickStoreDataToDB method when clicked
         # Central Widget [QWidget]
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(280, 20, 181, 21))
@@ -103,6 +104,7 @@ class Ui_MainWindow_devtool(object):
         self.pushButton_select = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_select.setGeometry(QtCore.QRect(470, 60, 75, 23))
         self.pushButton_select.setObjectName("pushButton_select")
+        self.pushButton_select.clicked.connect(self.onClickGetDataFromDB)  # onClickGetDataFromDB method when clicked
         # [QMenuBar]
         MainWindow_devtool.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow_devtool)
@@ -141,11 +143,39 @@ class Ui_MainWindow_devtool(object):
             # print('lambda_01 connected')
         else:
             msg = QMessageBox()
-            msg.setWindowTitle("Database Message")
+            msg.setWindowTitle("Database Connection Message")
             msg.setText("Algo DB Does Not Exist. Choose the Other One.")
+            msg.setIcon(QMessageBox.Information)   # Critical, Warning, Information, Question
+            # msg.setStandardButtons(QMessageBox.Retry|QMessageBox.Ignore) # Ok, Open, Save, Cancel, Close, Yes, No, Abort, Retry, Ignore
+            msg.setDefaultButton(QMessageBox.Retry)
+            # msg.setInformativeText("Choose Lambda-DB")
+            msg.setDetailedText("Choose Lambda-DB")
             x = msg.exec_()
             # print('algo db was checked')    
 
+    def onClickGetDataFromDB(self):
+        print('data come from database in AWS')
+
+    def onClickStoreDataToDB(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Database Upload Message")
+        msg.setText("Are you Sure To Store Your Modified Text?")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        msg.setDetailedText("Once saved, the text will not be restored.")
+        msg.buttonClicked.connect(self.popupStoreButton)
+        x = msg.exec_()
+        # print('data stored to DB in AWS')    
+
+
+    def popupStoreButton(slef, pop):
+        btext = pop.text()
+        if btext == '&Yes':
+            print("Yes")
+        elif btext == '&No':
+            print("No")  
+        else:      
+            print(btext)
 
 
 if __name__ == "__main__":
