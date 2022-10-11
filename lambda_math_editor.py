@@ -34,7 +34,8 @@ class Ui_MainWindow_devtool(object):
         self.label_db_choose.setObjectName("label_db_choose")
         # Display Widget [QLabel]
         self.pushButton_connect = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_connect.setGeometry(QtCore.QRect(470, 20, 75, 23))
+        # self.pushButton_connect.setGeometry(QtCore.QRect(470, 20, 75, 23))
+        self.pushButton_connect.setGeometry(QtCore.QRect(470, 15, 75, 23))
         self.pushButton_connect.setObjectName("pushButton_connect")
         self.pushButton_connect.clicked.connect(self.onClickConnectDB)  # onClickConnetDB method when clicked
         # Display Widget [QLabel]
@@ -96,7 +97,8 @@ class Ui_MainWindow_devtool(object):
         self.label_db_pkey.setObjectName("label_db_pkey")
         # Button [QPushButton]
         self.pushButton_select = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_select.setGeometry(QtCore.QRect(470, 60, 75, 23))
+        # self.pushButton_select.setGeometry(QtCore.QRect(470, 60, 75, 23))
+        self.pushButton_select.setGeometry(QtCore.QRect(470, 58, 75, 23))
         self.pushButton_select.setObjectName("pushButton_select")
         self.pushButton_select.clicked.connect(self.onClickGetDataFromDB)  # onClickGetDataFromDB method when clicked
         # [QMenuBar]
@@ -147,6 +149,15 @@ class Ui_MainWindow_devtool(object):
             # print('algo db was checked')    
 
     def onClickGetDataFromDB(self):
+        pkey = self.lineEdit_db_pkey.text()
+        if pkey == '':    
+            print("empty")
+        else:
+            try:
+                pk = int(pkey)
+            except:    
+                print('Input non-negative integer')
+
         print('data come from database in AWS')
 
     def onClickStoreDataToDB(self):
