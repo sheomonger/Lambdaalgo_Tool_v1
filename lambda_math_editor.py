@@ -134,7 +134,10 @@ class Ui_MainWindow_devtool(object):
 
 
     def onClickConnectDB(self):
-        print('clicked')
+        if self.radioButton_db_01.isChecked():
+            print('clicked')
+        else:
+            print('algo db was checked')    
 
 
 
