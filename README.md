@@ -5,3 +5,5 @@
 ## pip install pyqt5
 
 ## pip install PyMySQL
+
+## python lambda_math_editor.py

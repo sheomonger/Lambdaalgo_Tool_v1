@@ -150,15 +150,34 @@ class Ui_MainWindow_devtool(object):
 
     def onClickGetDataFromDB(self):
         pkey = self.lineEdit_db_pkey.text()
-        if pkey == '':    
-            print("empty")
+        if pkey == '':
+            msg = QMessageBox()
+            msg.setWindowTitle("Value Error")
+            msg.setText("Input the problem ID.")
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Abort)
+            x = msg.exec_()
+            return
         else:
             try:
                 pk = int(pkey)
-            except:    
-                print('Input non-negative integer')
+            except:
+                msg = QMessageBox()
+                msg.setWindowTitle("Value Error")
+                msg.setText("Follow the problem ID format.")
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Abort)
+                x = msg.exec_()
+                return
+                # print('Input non-negative integer')
 
-        print('data come from database in AWS')
+        if self.radioButton_sol.isChecked():
+            print("해설")
+        elif self.radioButton_pro.isChecked():
+            print("문제")
+        else:
+            print("No Way")    
+        # print('data come from database in AWS')
 
     def onClickStoreDataToDB(self):
         msg = QMessageBox()
