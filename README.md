@@ -3,3 +3,5 @@
 ## python -m pip install --upgrade
 
 ## pip install pyqt5
+
+## pip install PyMySQL

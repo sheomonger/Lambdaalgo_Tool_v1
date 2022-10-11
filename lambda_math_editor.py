@@ -12,6 +12,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import pymysql
 
 
 class Ui_MainWindow_devtool(object):
@@ -135,7 +136,8 @@ class Ui_MainWindow_devtool(object):
 
     def onClickConnectDB(self):
         if self.radioButton_db_01.isChecked():
-            print('clicked')
+            db = pymysql.connect('database-1.cs9xpmvzcxu5.us-east-1.rds.amazonaws.com', 'admin', 'abcd1234')
+            print('lambda_01 connected')
         else:
             print('algo db was checked')    
 
