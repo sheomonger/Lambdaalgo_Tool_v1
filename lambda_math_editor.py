@@ -13,6 +13,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import pymysql
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Ui_MainWindow_devtool(object):
@@ -137,9 +138,13 @@ class Ui_MainWindow_devtool(object):
     def onClickConnectDB(self):
         if self.radioButton_db_01.isChecked():
             db = pymysql.connect('database-1.cs9xpmvzcxu5.us-east-1.rds.amazonaws.com', 'admin', 'abcd1234')
-            print('lambda_01 connected')
+            # print('lambda_01 connected')
         else:
-            print('algo db was checked')    
+            msg = QMessageBox()
+            msg.setWindowTitle("Database Message")
+            msg.setText("Algo DB Does Not Exist. Choose the Other One.")
+            x = msg.exec_()
+            # print('algo db was checked')    
 
 
 
