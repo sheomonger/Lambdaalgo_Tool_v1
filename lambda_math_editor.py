@@ -135,8 +135,20 @@ class Ui_MainWindow_devtool(object):
 
     def onClickConnectDB(self):
         if self.radioButton_db_01.isChecked():
-            db = pymysql.connect('database-1.cs9xpmvzcxu5.us-east-1.rds.amazonaws.com', 'admin', 'abcd1234')
-            # print('lambda_01 connected')
+            try:
+                db = pymysql.connect('database-1.cs9xpmvzcxu5.us-east-1.rds.amazonaws.com', 'admin', 'abcd1234')
+                msg = QMessageBox()
+                msg.setWindowTitle("DB Connection")
+                msg.setText("DB Connected !")
+                msg.setIcon(QMessageBox.Information)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+                # print('lambda_01 connected')
+            except Exception as e:
+                print(e)
+                raise
+            finally:
+                return
         else:
             msg = QMessageBox()
             msg.setWindowTitle("Database Connection Message")
