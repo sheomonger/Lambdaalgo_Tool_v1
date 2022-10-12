@@ -226,11 +226,19 @@ class Ui_MainWindow_devtool(object):
         global cursor
         btext = pop.text()
         if btext == '&Yes':
-            if self.radioButton_sol.isChecked():
-                sql = "update temptable set solution = %s where pid = %s"
-                cursor.execute(sql, (self.plainTextEdit_pro_sol.toPlainText(), self.lineEdit_db_pkey.text()))
-                cursor.connection.commit()
-                print("Yes")
+            try:
+                if self.radioButton_sol.isChecked():
+                    sql = "update temptable set solution = %s where pid = %s"
+                    cursor.execute(sql, (self.plainTextEdit_pro_sol.toPlainText(), self.lineEdit_db_pkey.text()))
+                    cursor.connection.commit()
+                elif self.radioButton_pro.isChecked():
+                    sql = "update temptable set problem = %s where pid = %s"
+                    cursor.execute(sql, (self.plainTextEdit_pro_sol.toPlainText(), self.lineEdit_db_pkey.text()))
+                    cursor.connection.commit()
+                else:    
+                    print("Yes")
+            except:  # IndexError
+                return
         elif btext == '&No':
             print("No")  
         else:      
