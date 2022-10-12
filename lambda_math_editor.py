@@ -200,14 +200,15 @@ class Ui_MainWindow_devtool(object):
             # print("문제")
         else:
             print("No Way")    
-        print(sql)
+        # print(sql)
         global cursor
-        print(type(cursor))
+        # print(type(cursor))
         cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
-
+        result = cursor.fetchall()  # tuple of tuple
+        # print(type(result[0][0]))
+        self.plainTextEdit_pro_sol.setPlainText(result[0][0])
         # print('data come from database in AWS')
+        print(self.plainTextEdit_pro_sol.toPlainText())
 
     def onClickStoreDataToDB(self):
         msg = QMessageBox()
@@ -216,15 +217,20 @@ class Ui_MainWindow_devtool(object):
         msg.setIcon(QMessageBox.Warning)  # Critical, Warning, Information, Question
         msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)   # Ok, Open, Save, Cancel, Close, Yes, No, Abort, Retry, Ignore
         msg.setDetailedText("Once saved, the text will not be restored.")
+        isSol = self.radioButton_sol.isChecked()
         msg.buttonClicked.connect(self.popupStoreButton)
         x = msg.exec_()
         # print('data stored to DB in AWS')    
 
-
-    def popupStoreButton(slef, pop):
+    def popupStoreButton(self, pop):
+        global cursor
         btext = pop.text()
         if btext == '&Yes':
-            print("Yes")
+            if self.radioButton_sol.isChecked():
+                sql = "update temptable set solution = %s where pid = %s"
+                cursor.execute(sql, (self.plainTextEdit_pro_sol.toPlainText(), self.lineEdit_db_pkey.text()))
+                cursor.connection.commit()
+                print("Yes")
         elif btext == '&No':
             print("No")  
         else:      
