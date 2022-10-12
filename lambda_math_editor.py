@@ -10,6 +10,11 @@
 # # Layout, Spacer, Button, Item View, Item Widget, Container, Input Widget, Display Widget [class name]
 #
 
+"""
+ASSUMPTION: There exists database MySQL in AWS as 'lambda_01' with temptable(pid, problem, solution)
+            There exist 10 rows in table as like (5, '문제', '해설') 
+"""
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import pymysql
@@ -199,7 +204,7 @@ class Ui_MainWindow_devtool(object):
             cursor.execute(sql)
             result = cursor.fetchall()  # tuple of tuple
             self.plainTextEdit_pro_sol.setPlainText(result[0][0])
-            print(self.plainTextEdit_pro_sol.toPlainText())
+            # print(self.plainTextEdit_pro_sol.toPlainText())
         except:  # IndexError
             return    
 
