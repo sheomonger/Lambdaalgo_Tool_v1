@@ -115,7 +115,7 @@ class Ui_MainWindow_devtool(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow_devtool)
         self.statusbar.setObjectName("statusbar")
         MainWindow_devtool.setStatusBar(self.statusbar)
-
+        #
         self.retranslateUi(MainWindow_devtool)
         QtCore.QMetaObject.connectSlotsByName(MainWindow_devtool)
 
@@ -151,8 +151,6 @@ class Ui_MainWindow_devtool(object):
                 cursor = db.cursor()
                 cursor.execute("use lambda_01")
                 cursor.connection.commit()
-                # return db.cursor()
-                # print('lambda_01 connected')
             except Exception as e:
                 print(e)
                 raise
@@ -167,7 +165,6 @@ class Ui_MainWindow_devtool(object):
             # msg.setInformativeText("Choose Lambda-DB")
             msg.setDetailedText("Choose Lambda-DB")
             x = msg.exec_()
-            # print('algo db was checked')    
 
     def onClickGetDataFromDB(self):
         pkey = self.lineEdit_db_pkey.text()  # TODO: if cursor DNE 
@@ -190,25 +187,18 @@ class Ui_MainWindow_devtool(object):
                 msg.setStandardButtons(QMessageBox.Abort)
                 x = msg.exec_()
                 return
-                # print('Input non-negative integer')
-        sql = 'show tables'
         if self.radioButton_sol.isChecked():
             sql = 'select solution from temptable where pid = ' + pkey
-            # print("해설")
         elif self.radioButton_pro.isChecked():
             sql = 'select problem from temptable where pid = ' + pkey
-            # print("문제")
         else:
             print("No Way")    
-        # print(sql)
+        
         global cursor
-        # print(type(cursor))
         try:
             cursor.execute(sql)
             result = cursor.fetchall()  # tuple of tuple
-            # print(type(result[0][0]))
             self.plainTextEdit_pro_sol.setPlainText(result[0][0])
-            # print('data come from database in AWS')
             print(self.plainTextEdit_pro_sol.toPlainText())
         except:  # IndexError
             return    
@@ -223,7 +213,6 @@ class Ui_MainWindow_devtool(object):
         isSol = self.radioButton_sol.isChecked()
         msg.buttonClicked.connect(self.popupStoreButton)
         x = msg.exec_()
-        # print('data stored to DB in AWS')    
 
     def popupStoreButton(self, pop):
         global cursor
