@@ -203,12 +203,15 @@ class Ui_MainWindow_devtool(object):
         # print(sql)
         global cursor
         # print(type(cursor))
-        cursor.execute(sql)
-        result = cursor.fetchall()  # tuple of tuple
-        # print(type(result[0][0]))
-        self.plainTextEdit_pro_sol.setPlainText(result[0][0])
-        # print('data come from database in AWS')
-        print(self.plainTextEdit_pro_sol.toPlainText())
+        try:
+            cursor.execute(sql)
+            result = cursor.fetchall()  # tuple of tuple
+            # print(type(result[0][0]))
+            self.plainTextEdit_pro_sol.setPlainText(result[0][0])
+            # print('data come from database in AWS')
+            print(self.plainTextEdit_pro_sol.toPlainText())
+        except:  # IndexError
+            return    
 
     def onClickStoreDataToDB(self):
         msg = QMessageBox()
@@ -237,7 +240,7 @@ class Ui_MainWindow_devtool(object):
                     cursor.connection.commit()
                 else:    
                     print("Yes")
-            except:  # IndexError
+            except:  
                 return
         elif btext == '&No':
             print("No")  
