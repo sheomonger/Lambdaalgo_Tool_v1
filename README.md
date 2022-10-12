@@ -9,6 +9,6 @@
 ## python lambda_math_editor.py
 
 
-### TMI (build)
-### pip install pyinstaller
-### pyinstaller -w -F lambda_math_editor.py
+##### TMI (build)
+##### pip install pyinstaller
+##### pyinstaller -w -F lambda_math_editor.py
